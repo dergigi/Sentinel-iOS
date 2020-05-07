@@ -21,7 +21,7 @@ class WalletsViewController: UIViewController {
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.update), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(self.update), for: UIControl.Event.valueChanged)
         refreshControl.tintColor = .white
         return refreshControl
     }()
@@ -136,7 +136,7 @@ extension WalletsViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
 }

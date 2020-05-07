@@ -60,7 +60,7 @@ class Sentinel {
     init() {
         socket.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.fup), name:NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.fup), name:UIApplication.willEnterForegroundNotification, object: nil)
         try? self.reachability.startNotifier()
     }
     
@@ -312,7 +312,7 @@ extension Sentinel {
                     
                     UIApplication.shared.applicationIconBadgeNumber += 1
                     
-                    content.sound = UNNotificationSound.default()
+                    content.sound = UNNotificationSound.default
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                     let request = UNNotificationRequest(identifier: wTransaction.txid, content: content, trigger: trigger)
                     center.add(request, withCompletionHandler: { (error) in })
@@ -464,7 +464,7 @@ extension Sentinel {
             
             let key: Array<UInt8> = Array(password.sha256().bytes[0..<16])
             
-            guard let inputData = input.data(using: .utf8), let decodedInput = try? JSONSerialization.jsonObject(with: inputData, options: []) as? [String: String], let version = decodedInput?["version"], version == "2", let payload = decodedInput?["payload"], let decryptedWallets = try? AES(key: key, blockMode: CBC(iv: key), padding: .pkcs5).decrypt(Data(base64Encoded: payload)!.bytes), let wallets = try? JSONSerialization.jsonObject(with: Data(bytes: decryptedWallets), options: []) as? [[String: Any]] else {
+            guard let inputData = input.data(using: .utf8), let decodedInput = ((try? JSONSerialization.jsonObject(with: inputData, options: []) as? [String: String]) as [String : String]??), let version = decodedInput?["version"], version == "2", let payload = decodedInput?["payload"], let decryptedWallets = try? AES(key: key, blockMode: CBC(iv: key), padding: .pkcs5).decrypt(Data(base64Encoded: payload)!.bytes), let wallets = ((try? JSONSerialization.jsonObject(with: Data(bytes: decryptedWallets), options: []) as? [[String: Any]]) as [[String : Any]]??) else {
                 seal.reject(Errors.failedToImport)
                 return
             }

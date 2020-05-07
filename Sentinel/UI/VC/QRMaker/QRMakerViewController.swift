@@ -104,7 +104,7 @@ class QRMakerViewController: UIViewController {
     }
     
     @IBAction func saveToClipboard(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: NSLocalizedString("Copied", comment: ""), message: NSLocalizedString("Public key has been copied to your clipboard!", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("Copied", comment: ""), message: NSLocalizedString("Public key has been copied to your clipboard!", comment: ""), preferredStyle: UIAlertController.Style.alert)
         let ok = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { (action) in
             UIPasteboard.general.string = self.addressLabel.text
         }

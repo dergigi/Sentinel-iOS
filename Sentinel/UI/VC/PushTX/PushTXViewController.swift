@@ -30,7 +30,7 @@ class PushTXViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Push Transaction"
-        let push = UIBarButtonItem(title: NSLocalizedString("Push", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(pushTrx))
+        let push = UIBarButtonItem(title: NSLocalizedString("Push", comment: ""), style: UIBarButtonItem.Style.plain, target: self, action: #selector(pushTrx))
         navigationItem.rightBarButtonItem = push
     }
     

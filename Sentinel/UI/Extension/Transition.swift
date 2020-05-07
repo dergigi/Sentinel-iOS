@@ -14,8 +14,8 @@ extension UIViewController {
         
         let container = ((containerView != nil) ? containerView! : view!)
         
-        let current = childViewControllers.last
-        addChildViewController(child)
+        let current = children.last
+        addChild(child)
         
         let newView = child.view!
         newView.translatesAutoresizingMaskIntoConstraints = true
@@ -26,18 +26,18 @@ extension UIViewController {
             container.addSubview(newView)
             
             UIView.animate(withDuration: duration, delay: 0, options: [.transitionCrossDissolve], animations: { }, completion: { done in
-                child.didMove(toParentViewController: self)
+                child.didMove(toParent: self)
                 completion?(done)
             })
         }
         
         if let existing = current {
             if existing == child {
-                existing.willMove(toParentViewController: nil)
+                existing.willMove(toParent: nil)
                 
                 transition(from: existing, to: child, duration: duration, options: [.transitionCrossDissolve], animations: { }, completion: { done in
-                    existing.removeFromParentViewController()
-                    child.didMove(toParentViewController: self)
+                    existing.removeFromParent()
+                    child.didMove(toParent: self)
                     completion?(done)
                 })
             }else{

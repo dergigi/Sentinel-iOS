@@ -28,9 +28,9 @@ class ExportViewController: UIViewController, UITextFieldDelegate {
         
         self.title = NSLocalizedString("Export wallet", comment: "")
         
-        let alert = UIAlertController(title: NSLocalizedString("Export Password", comment: ""), message: NSLocalizedString("Please enter a password", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("Export Password", comment: ""), message: NSLocalizedString("Please enter a password", comment: ""), preferredStyle: UIAlertController.Style.alert)
 
-        exportAction = UIAlertAction(title: NSLocalizedString("Export", comment: ""), style: UIAlertActionStyle.default) { (action: UIAlertAction) in
+        exportAction = UIAlertAction(title: NSLocalizedString("Export", comment: ""), style: UIAlertAction.Style.default) { (action: UIAlertAction) in
             self.sentinel.exportWallet(password: alert.textFields!.first!.text!).done { (json) in
                 self.export = json
                 let shareItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.share))
@@ -74,7 +74,7 @@ class ExportViewController: UIViewController, UITextFieldDelegate {
     @objc func share() {
         let activityViewController = UIActivityViewController(activityItems: [self.export!], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
-        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
         self.present(activityViewController, animated: true, completion: nil)
     }
 }

@@ -62,15 +62,15 @@ class PincodeViewController: UIViewController {
                         if isScrambled {
                             let random = arc4random_uniform(UInt32(titles.count))
                             let char = titles[Int(random)]
-                            titles.remove(at: titles.index(of: char!)!)
-                            sub.setTitle(String(char!), for: UIControlState.normal)
+                            titles.remove(at: titles.firstIndex(of: char!)!)
+                            sub.setTitle(String(char!), for: UIControl.State.normal)
                         }else{
-                            sub.setTitle(String(number), for: UIControlState.normal)
+                            sub.setTitle(String(number), for: UIControl.State.normal)
                             titles = String(titles.dropFirst())
                         }
                         
                     } else if sub.tag == 1 {
-                        sub.setTitle("delete", for: UIControlState.normal)
+                        sub.setTitle("delete", for: UIControl.State.normal)
 
                     }
                 }

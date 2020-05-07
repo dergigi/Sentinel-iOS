@@ -20,9 +20,9 @@ class NetworkViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("Network", comment: "")
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.tintColor = .white
-        let close = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: UIBarButtonItemStyle.plain, target: self, action: #selector(dismissView))
+        let close = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: UIBarButtonItem.Style.plain, target: self, action: #selector(dismissView))
         self.navigationItem.leftBarButtonItems = [close]
     }
     

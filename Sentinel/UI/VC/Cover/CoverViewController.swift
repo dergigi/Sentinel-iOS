@@ -22,6 +22,6 @@ class CoverViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.addSubview(bg)
-        view.sendSubview(toBack: bg)
+        view.sendSubviewToBack(bg)
     }
 }

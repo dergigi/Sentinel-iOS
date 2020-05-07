@@ -18,13 +18,13 @@ class RootNavigationViewController: UINavigationController {
         
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationBar.tintColor = .white
         navigationBar.isTranslucent = false
         navigationBar.barTintColor = #colorLiteral(red: 0.2823529412, green: 0.3098039216, blue: 0.3411764706, alpha: 1)
         navigationBar.backgroundColor = #colorLiteral(red: 0.2823529412, green: 0.3098039216, blue: 0.3411764706, alpha: 1)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.checkForPin), name:NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.cover), name:NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.checkForPin), name:UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.cover), name:UIApplication.didEnterBackgroundNotification, object: nil)
         
         guard (Locksmith.loadDataForUserAccount(userAccount: "account") != nil) else {
             
